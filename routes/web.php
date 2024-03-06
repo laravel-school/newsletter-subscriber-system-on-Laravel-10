@@ -17,3 +17,6 @@ use App\Http\Controllers\SubscribeController;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::post('/subscribe', [SubscribeController::class, 'post']);
+Route::get('/subscribe/{hash}', [SubscribeController::class, 'verify'])->name('subscribe.confirm');
