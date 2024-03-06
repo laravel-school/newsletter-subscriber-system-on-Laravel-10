@@ -16,7 +16,8 @@ class SubscribeController extends Controller
         // Maybe you need more validation rules???
 
         $Subscriber = Subscriber::create([
-            'email' => $validated['email']
+            'email' => $validated['email'],
+            'hash' => md5($validated['email']),
         ]);
 
         SubscriberJoinJob::dispatch($Subscriber);
@@ -24,7 +25,7 @@ class SubscribeController extends Controller
         return redirect()->back()->with('success', 'You have successfully subscribed. Please check your email spam folder.');
     }
 
-    public function show(string $hash)
+    public function verify(string $hash)
     {
         $subscriber = Subscriber::where('hash', $hash)->firstOrFail();
 
@@ -33,7 +34,7 @@ class SubscribeController extends Controller
             'verified_at' => now()
         ]);
 
-        return redirect(route('home'))
+        return redirect('/')
             ->with('success', 'You have successfully verified your email.');
     }
 }

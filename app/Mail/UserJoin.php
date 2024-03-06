@@ -14,7 +14,7 @@ class UserJoin extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public function __construct(public Subscriber $user)
+    public function __construct(public Subscriber $subscriber)
     {
     }
 

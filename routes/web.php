@@ -19,4 +19,4 @@ Route::get('/', function () {
 });
 
 Route::post('/subscribe', [SubscribeController::class, 'post']);
-Route::post('/subscribe/{hash}', [SubscribeController::class, 'show']);
+Route::get('/subscribe/{hash}', [SubscribeController::class, 'verify'])->name('subscribe.confirm');
