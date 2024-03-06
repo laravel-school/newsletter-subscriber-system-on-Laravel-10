@@ -9,7 +9,7 @@ use App\Http\Requests\NewsletterRequest;
 
 class SubscribeController extends Controller
 {
-    public function store(NewsletterRequest $request)
+    public function post(NewsletterRequest $request)
     {
         $validated = $request->validated();
 
